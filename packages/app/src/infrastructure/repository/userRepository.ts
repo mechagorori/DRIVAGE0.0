@@ -9,7 +9,7 @@ export class UserRepository implements IRepository<User> {
   }
   save = async (model: User) => {
     await setDoc(
-      doc(this.handler, "user", model.getAddress()),
+      doc(this.handler, "users", model.getAddress()),
       {
         address: model.getAddress(),
         name: model.getName(),

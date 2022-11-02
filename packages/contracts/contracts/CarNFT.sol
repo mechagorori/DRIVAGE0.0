@@ -19,7 +19,7 @@ contract CarNFT is ERC721, ERC721URIStorage, Ownable {
 
     /**
      * @dev
-     * Mint a car NFT, with its tokenId provided by app
+     * Mint a car NFT, with its tokenURI provided by app
      */
     function safeMint(address to, string memory uri) public payable onlyOwner {
         require(msg.value == mintPrice);

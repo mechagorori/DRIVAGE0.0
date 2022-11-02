@@ -14,7 +14,7 @@ export const carCreator = async (userAddress: string) => {
   // metaデータ作成
   const url = `${ulid()}.json`;
   const storageHandler = new CarStorage(storage);
-  storageHandler.save(JSON.stringify(StandardCar), url);
+  storageHandler.save(JSON.stringify(StandardCar.meta), url);
   // TODO 車NFTをmint
   const address = "";
   //　車追加

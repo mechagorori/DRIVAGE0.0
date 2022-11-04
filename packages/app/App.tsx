@@ -1,35 +1,33 @@
-import "./global";
+import "@walletconnect/react-native-compat";
 import "./shim";
-import { useEffect } from "react";
-import { StatusBar } from "expo-status-bar";
-import { StyleSheet, Text, View } from "react-native";
-import AuthClient from "@walletconnect/auth-client";
+import {
+  withWalletConnect,
+  useWalletConnect,
+} from "@walletconnect/react-native-dapp";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 import "./src/infrastructure/firebase";
+import React from "react";
+import { Platform } from "react-native";
+import { StyleSheet, Text, View, Button } from "react-native";
 
-export default function App() {
-  useEffect(() => {
-    AuthClient.init({
-      relayUrl: "wss://relay.walletconnect.com",
-      projectId: "5290f7b69e00c31799bec49e5d9d02d2",
-      metadata: {
-        name: "react-dapp-auth",
-        description: "React Example Dapp for Auth",
-        url: "",
-        icons: [],
-      },
-    })
-      .then((authClient) => {
-        console.log(authClient);
-      })
-      .catch(console.error);
-  }, []);
+function App() {
+  const connector = useWalletConnect();
+  if (!connector.connected) {
+    return <Button title="Connect" onPress={() => connector.connect()} />;
+  }
   return (
-    <View style={styles.container}>
-      <Text>Open up App.tsx to start working on your app!</Text>
-      <StatusBar style="auto" />
-    </View>
+    <Button title="Kill Session" onPress={() => connector.killSession()} />
   );
 }
+
+export default withWalletConnect(App, {
+  redirectUrl:
+    Platform.OS === "web" ? window.location.origin : "yourappscheme://",
+  storageOptions: {
+    // @ts-ignore
+    asyncStorage: AsyncStorage,
+  },
+});
 
 const styles = StyleSheet.create({
   container: {

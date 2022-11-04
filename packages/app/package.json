@@ -7,12 +7,13 @@
     "android": "expo start --android",
     "ios": "expo start --ios",
     "web": "expo start --web",
-    "postinstall": "rn-nodeify --install --hack"
+    "postinstall": "./node_modules/.bin/rn-nodeify --install buffer,events,process,stream,util,inherits,fs,path,assert --hack;"
   },
   "dependencies": {
     "@react-native-async-storage/async-storage": "^1.17.10",
     "@tradle/react-native-http": "^2.0.1",
-    "@walletconnect/auth-client": "^1.0.0",
+    "@walletconnect/react-native-compat": "^2.1.0",
+    "@walletconnect/react-native-dapp": "^1.8.0",
     "assert": "^1.5.0",
     "big-integer": "^1.6.51",
     "browserify-zlib": "^0.1.4",

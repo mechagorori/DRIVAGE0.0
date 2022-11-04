@@ -13,7 +13,7 @@ import {
 import { ethers } from "ethers";
 import { CarStorage } from "../../../infrastructure/storage/car";
 
-export const carCreator = async (connector: Connector, userAddress: string) => {
+export const carCreator = async (userAddress: string) => {
   // データ検索
   const userQuery = new UserQuery(db);
   const user = await userQuery.find(userAddress);
@@ -23,13 +23,13 @@ export const carCreator = async (connector: Connector, userAddress: string) => {
   const storageHandler = new CarStorage(storage);
   storageHandler.save(JSON.stringify(StandardCar.meta), url);
   // TODO 車NFTをmint
-  const provider = await Provider.build(connector).catch((e) => {
+  const provider = await Provider.build().catch((e) => {
     console.log(`build: ${e}`);
     throw e;
   });
-  const signer = provider.getSigner();
+  const signer = provider.getSigner(userAddress);
   const contract = ContractFactory.build(new StandardCarContract(), signer);
-  const address = await contract.safeMint(userAddress, url, {
+  const address = await contract.safeMint(url, {
     value: ethers.utils.parseEther("0.01"),
   });
   console.log(address);

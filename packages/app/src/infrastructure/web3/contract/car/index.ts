@@ -5,7 +5,7 @@ export class StandardCar implements IContract {
   readonly address: string;
   readonly abi: any;
   constructor() {
-    this.address = "0xc3c4f43b61822ffcf3cfc88691a18182aee9028e";
+    this.address = "0x76ea92cfd6b6cb0971a7b8e2135506a598d073c9";
     this.abi = standardCar.abi;
   }
 }

@@ -32,12 +32,12 @@ function App() {
   const connector = useWalletConnect();
   const { login } = useLoginUseCase(connector);
   const test = async (address: string) => {
-    const provider = await Provider.build(connector).catch((e) => {
+    const provider = await Provider.build().catch((e) => {
       console.log(`build: ${e}`);
       throw e;
     });
     const contract = ContractFactory.build(new StandardCar(), provider);
-    // console.log(`Address: ${address}`);
+    console.log(`Address: ${address}`);
     console.log(`Balance: ${await provider.getBalance(address)}`);
     // console.log(await contract.mint(address));
   };
@@ -48,8 +48,7 @@ function App() {
           title="Connect"
           onPress={() =>
             login().then(
-              // (res) => res && carCreator(connector, res?.getAddress())
-              async (res) => res && (await test(res?.getAddress()))
+              async (res) => res && (await carCreator(res?.getAddress()))
             )
           }
         />

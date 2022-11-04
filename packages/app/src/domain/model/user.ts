@@ -83,4 +83,10 @@ export class User {
     if (index < 0) throw Error();
     this.cars.map((i) => i.changeStatus(i.getAddress() === model.getAddress()));
   };
+  changeName = (name: string | null) => {
+    this.name = name;
+  };
+  changeIcon = (icon: string | null) => {
+    this.icon = icon;
+  };
 }

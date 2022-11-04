@@ -1,12 +1,19 @@
 import { ulid } from "ulid";
+import Connector from "@walletconnect/client";
 import { StandardCar } from "../../../const/car";
 import { Car } from "../../model/car";
 import { db, storage } from "../../../infrastructure/firebase";
 import { UserQuery } from "../../../infrastructure/query/userQuery";
 import { UserRepository } from "../../../infrastructure/repository/userRepository";
+import { Provider } from "../../../infrastructure/web3/provider";
+import {
+  ContractFactory,
+  StandardCar as StandardCarContract,
+} from "../../../infrastructure/web3/contract";
+import { ethers } from "ethers";
 import { CarStorage } from "../../../infrastructure/storage/car";
 
-export const carCreator = async (userAddress: string) => {
+export const carCreator = async (connector: Connector, userAddress: string) => {
   // データ検索
   const userQuery = new UserQuery(db);
   const user = await userQuery.find(userAddress);
@@ -16,7 +23,16 @@ export const carCreator = async (userAddress: string) => {
   const storageHandler = new CarStorage(storage);
   storageHandler.save(JSON.stringify(StandardCar.meta), url);
   // TODO 車NFTをmint
-  const address = "";
+  const provider = await Provider.build(connector).catch((e) => {
+    console.log(`build: ${e}`);
+    throw e;
+  });
+  const signer = provider.getSigner();
+  const contract = ContractFactory.build(new StandardCarContract(), signer);
+  const address = await contract.safeMint(userAddress, url, {
+    value: ethers.utils.parseEther("0.01"),
+  });
+  console.log(address);
   //　車追加
   user.addCar(new Car({ address, meta: url }));
   //  データ保存

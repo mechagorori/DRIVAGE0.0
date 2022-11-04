@@ -1,6 +1,6 @@
 import { User } from "../../domain/model/user";
 import { IRepository } from "../../domain/repository";
-import { Firestore, setDoc, doc } from "firebase/firestore";
+import { Firestore, setDoc, doc, Timestamp } from "firebase/firestore";
 
 export class UserRepository implements IRepository<User> {
   private handler: Firestore;
@@ -10,29 +10,35 @@ export class UserRepository implements IRepository<User> {
   save = async (model: User) => {
     await setDoc(
       doc(this.handler, "users", model.getAddress()),
-      {
-        address: model.getAddress(),
-        name: model.getName(),
-      },
+      this.converter(model),
       { merge: true }
     );
   };
+  converter = (model: User) => ({
+    address: model.getAddress(),
+    name: model.getName(),
+    icon: model.getIcon(),
+    cars: model.getCars()?.map((i) => ({
+      address: i.getAddress(),
+      meta: i.getMeta(),
+      isSelected: i.getIsSelected(),
+    })),
+    seasons: model.getSeasons().map((i) => ({
+      id: i.getId(),
+      title: i.getTitle(),
+      startDate: Timestamp.fromDate(i.getStartDate()),
+      endDate: Timestamp.fromDate(i.getEndDate()),
+    })),
+    anzns: model.getAnzns().map((i) => ({
+      address: i.getAddress(),
+      totalPoint: i.getTotalPoint(),
+      details: i.getDetails().map((d) => ({
+        id: d.getId(),
+        title: d.getTitle(),
+        point: d.getPoint(),
+      })),
+      startDate: Timestamp.fromDate(i.getStartDate()),
+      endDate: Timestamp.fromDate(i.getEndDate()),
+    })),
+  });
 }
-// import { db } from "../firebase";
-// const test = () => {
-//   const model = new User({
-//     address: "test",
-//     name: "test",
-//     icon: null,
-//     cars: [],
-//     parts: [],
-//     seasons: [],
-//     anzns: [],
-//   });
-//   const repo = new UserRepository(db);
-//   repo
-//     .save(model)
-//     .catch((e) => console.log(e))
-//     .then(() => console.log("success"));
-// };
-// test();

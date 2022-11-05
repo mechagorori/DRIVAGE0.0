@@ -30,6 +30,7 @@ export const MainLayout = (props: { children?: ReactNode }) => {
         css={css`
           ${justify_content_between}
           padding: ${px._10};
+          height: 8vh;
         `}
       >
         <div></div>
@@ -41,7 +42,13 @@ export const MainLayout = (props: { children?: ReactNode }) => {
           )}
         </div>
       </header>
-      <main>{props?.children}</main>
+      <main
+        css={css`
+          height: 92vh;
+        `}
+      >
+        {props?.children}
+      </main>
       {loading && <Loading />}
     </div>
   )

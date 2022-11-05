@@ -36,7 +36,7 @@ export const useLoginUseCase = () => {
       onChange(res ?? null)
       return res
     })
-  }, [ethereum])
+  }, [ethereum, onChange])
 
   return {
     account: value.account,

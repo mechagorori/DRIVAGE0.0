@@ -1,5 +1,6 @@
 export const white = "#ffffff"
-export const primary = "#6EB7DB"
+export const black = "#191919"
+export const primary = "#FEAE01"
 export const error = "#c7243a"
 export const success = "#40BFB0"
 export const warn = "#F0BA32"

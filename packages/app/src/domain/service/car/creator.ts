@@ -31,12 +31,14 @@ export const carCreator = async (userAddress: string) => {
     throw e;
   });
   const signer = provider.getSigner(userAddress);
-  const _contract = ContractFactory.build(new StandardCarContract(), provider);
-  const contract = _contract.connect(signer);
+  const contract = ContractFactory.build(new StandardCarContract(), signer);
   console.log("Signer: ", contract.signer);
-  const address = await contract.safeMint(url, {
-    value: ethers.utils.parseEther("0.01"),
-  });
+  // const address = await contract.safeMint(url, {
+  //   value: ethers.utils.parseEther("0.01"),
+  // });
+  const nftTxn = await contract.safeFreeMint(url);
+  await nftTxn.wait();
+  const address = nftTxn.hash;
   console.log(address);
   //　車追加
   user.addCar(new Car({ address, meta: url }));

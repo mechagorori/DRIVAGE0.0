@@ -7,6 +7,7 @@ import { useLoginUseCase } from "../application/usecase/login"
 import { carCreator } from "../domain/service/car/creator"
 import { ress, base, fonts } from "./style"
 import { ROUTES, PATHS } from "./routes"
+import { Loading } from "./components/parts/loading"
 
 function App() {
   // const { ethereum } = window as any
@@ -60,7 +61,9 @@ const Router = () => {
           <Route
             path={route.path}
             element={
-              <React.Suspense fallback={<></>}>{route.element}</React.Suspense>
+              <React.Suspense fallback={<Loading />}>
+                {route.element}
+              </React.Suspense>
             }
           />
         </React.Fragment>

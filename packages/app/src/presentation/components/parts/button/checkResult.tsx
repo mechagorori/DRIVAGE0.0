@@ -3,7 +3,7 @@ import { css } from "@emotion/react"
 import { Button, Props } from "."
 import { flex_center } from "presentation/style"
 
-export const StartDriving = (props: Props) => {
+export const CheckResult = (props: Props) => {
   const { style = null, ...other } = props
   return (
     <Button
@@ -15,7 +15,7 @@ export const StartDriving = (props: Props) => {
       `}
       {...other}
     >
-      <p>Start Driving</p>
+      <p>Check the result</p>
     </Button>
   )
 }

@@ -5,7 +5,6 @@ import { flex_center } from "presentation/style"
 
 export const BuyCar = (props: Props) => {
   const { style = null, ...other } = props
-
   return (
     <Button
       style={css`

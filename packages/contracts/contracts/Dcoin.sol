@@ -6,8 +6,7 @@ import "@openzeppelin/contracts/security/Pausable.sol";
 import "@openzeppelin/contracts/access/Ownable.sol";
 
 contract Dcoin is ERC20, ERC20Burnable, Pausable, Ownable {
-    uint256 private dicimals = 18;
-    uint256 private initialSupply = 100 * 10 ** dicimals;
+    uint256 private initialSupply = 0;
 
     constructor() ERC20("Dcoin", "DCOIN") {
         _mint(msg.sender, initialSupply);

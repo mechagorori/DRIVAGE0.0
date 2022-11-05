@@ -19,19 +19,21 @@ export const carCreator = async (userAddress: string) => {
   const user = await userQuery.find(userAddress);
   if (!user) throw Error();
   // metaデータ作成
-  const url = `${ulid()}.json`;
+  const fileName = `${ulid()}.json`;
   const storageHandler = new CarStorage(storage);
-  storageHandler.save(JSON.stringify(StandardCar.meta), url);
+  const url = await storageHandler.save(
+    JSON.stringify(StandardCar.meta),
+    fileName
+  );
   // TODO 車NFTをmint
   const provider = await Provider.build().catch((e) => {
     console.log(`build: ${e}`);
     throw e;
   });
   const signer = provider.getSigner(userAddress);
-  const contract = ContractFactory.build(new StandardCarContract(), signer);
-  contract.connect(signer);
-  console.log("Signer: ", signer);
-  console.log("Contract: ", contract);
+  const _contract = ContractFactory.build(new StandardCarContract(), provider);
+  const contract = _contract.connect(signer);
+  console.log("Signer: ", contract.signer);
   const address = await contract.safeMint(url, {
     value: ethers.utils.parseEther("0.01"),
   });

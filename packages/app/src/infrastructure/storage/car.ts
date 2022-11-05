@@ -1,6 +1,11 @@
 import { StandardCar } from "../../const/car";
 import { storage } from "../firebase";
-import { ref, uploadString, FirebaseStorage } from "firebase/storage";
+import {
+  ref,
+  uploadString,
+  FirebaseStorage,
+  getDownloadURL,
+} from "firebase/storage";
 
 export class CarStorage {
   handler: FirebaseStorage;
@@ -14,6 +19,7 @@ export class CarStorage {
     await uploadString(storageRef, value).then((snapshot) => {
       console.log("Uploaded a raw string!");
     });
+    return await getDownloadURL(storageRef);
   };
 }
 

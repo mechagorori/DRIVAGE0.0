@@ -7,7 +7,7 @@ import {
 
 export class CarStorage {
   handler: FirebaseStorage
-  basePath = "cars"
+  basePath = "meta"
   constructor(handler: FirebaseStorage) {
     this.handler = handler
   }

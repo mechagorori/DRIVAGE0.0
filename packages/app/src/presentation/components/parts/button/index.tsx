@@ -15,7 +15,7 @@ export const Button = (props: Props) => (
       border-radius: ${px._20};
       ${props?.style}
     `}
-    onClick={(e) => props?.onClick && props?.onClick(e)}
+    onClick={(e) => !!props?.onClick && props?.onClick(e)}
   >
     {props?.children}
   </div>

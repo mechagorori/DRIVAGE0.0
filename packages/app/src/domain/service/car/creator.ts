@@ -29,6 +29,9 @@ export const carCreator = async (userAddress: string) => {
   });
   const signer = provider.getSigner(userAddress);
   const contract = ContractFactory.build(new StandardCarContract(), signer);
+  contract.connect(signer);
+  console.log("Signer: ", signer);
+  console.log("Contract: ", contract);
   const address = await contract.safeMint(url, {
     value: ethers.utils.parseEther("0.01"),
   });

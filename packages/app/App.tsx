@@ -39,7 +39,10 @@ function App() {
     const contract = ContractFactory.build(new StandardCar(), provider);
     console.log(`Address: ${address}`);
     console.log(`Balance: ${await provider.getBalance(address)}`);
-    // console.log(await contract.mint(address));
+    const signer = provider.getSigner();
+    console.log("Signer1: ", signer);
+    const signer2 = provider.getSigner(address);
+    console.log("Signer2: ", signer2);
   };
   return (
     <View style={styles.container}>

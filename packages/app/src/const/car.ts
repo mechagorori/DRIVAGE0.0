@@ -1,9 +1,10 @@
 export const StandardCar = {
   address: "",
   meta: {
-    name: "",
+    name: "Rectangle",
     description: "",
-    image: "",
+    image:
+      "https://firebasestorage.googleapis.com/v0/b/drivage-ac98e.appspot.com/o/cars%2FRectangle.svg?alt=media&token=c766656c-c916-4c27-bd68-761ce367fd0d",
     attributes: [
       {
         trait_type: "price",

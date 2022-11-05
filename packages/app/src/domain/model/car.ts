@@ -1,3 +1,5 @@
+import axios from "axios"
+
 /*
 
 基底クラス
@@ -23,6 +25,7 @@ class CarBase {
   //
   getAddress = () => this.address
   getMeta = () => this.meta
+  getJson = async () => await axios.get(this.meta).then((res) => res.data)
 }
 
 /*

@@ -3,7 +3,10 @@ import { ReactNode, useCallback } from "react"
 import { css } from "@emotion/react"
 import { useLoginUseCase } from "application/usecase/login"
 import { useLoadingUseCase } from "application/usecase/loading"
-import { ConnectAccount } from "presentation/components/parts/button/connectAccount"
+import {
+  ConnectAccount,
+  ConnectdAccount,
+} from "presentation/components/parts/button/connectAccount"
 import { Loading } from "presentation/components/parts/loading"
 import { black, justify_content_between, px } from "presentation/style"
 
@@ -30,18 +33,22 @@ export const MainLayout = (props: { children?: ReactNode }) => {
         css={css`
           ${justify_content_between}
           padding: ${px._10};
+          height: 8vh;
         `}
       >
         <div></div>
         <div>
-          {!account ? (
-            <ConnectAccount onClick={_login} />
-          ) : (
-            <p>{account.getName() || account.getAddress()}</p>
-          )}
+          {!account ? <ConnectAccount onClick={_login} /> : <ConnectdAccount />}
         </div>
       </header>
-      <main>{props?.children}</main>
+      <main
+        css={css`
+          height: 92vh;
+          padding: ${px._10};
+        `}
+      >
+        {props?.children}
+      </main>
       {loading && <Loading />}
     </div>
   )

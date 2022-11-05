@@ -11,8 +11,20 @@ const TopComponent = React.lazy(() =>
   }))
 )
 
+/*
+
+ドライブ
+
+*/
+const DriveComponent = React.lazy(() =>
+  import("presentation/components/pages/drive").then(({ Drive }) => ({
+    default: Drive,
+  }))
+)
+
 export const PATHS = {
   top: "/top",
+  drive: "/drive",
 }
 
 export const Top = [
@@ -22,4 +34,11 @@ export const Top = [
   },
 ]
 
-export const ROUTES = [...Top]
+export const Drive = [
+  {
+    path: PATHS.drive,
+    element: <DriveComponent />,
+  },
+]
+
+export const ROUTES = [...Top, ...Drive]

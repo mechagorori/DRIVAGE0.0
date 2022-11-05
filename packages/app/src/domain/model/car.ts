@@ -4,25 +4,25 @@
 
 */
 export type CarArgs = {
-  address: string;
-  meta: string;
-};
+  address: string
+  meta: string
+}
 
 class CarBase {
   // アドレス
-  private address: string;
+  private address: string
   // メタデータの保存先
-  private meta: string;
+  private meta: string
   constructor(args: CarArgs) {
-    this.address = args.address;
-    this.meta = args.meta;
+    this.address = args.address
+    this.meta = args.meta
   }
 
   //
   // Getter
   //
-  getAddress = () => this.address;
-  getMeta = () => this.meta;
+  getAddress = () => this.address
+  getMeta = () => this.meta
 }
 
 /*
@@ -32,7 +32,7 @@ class CarBase {
 */
 export class Car extends CarBase {
   constructor(value: CarArgs) {
-    super(value);
+    super(value)
   }
 }
 
@@ -41,17 +41,17 @@ export class Car extends CarBase {
 ユーザーが保持する車クラス
 
 */
-export type UserCarArgs = CarArgs & { isSelected?: boolean };
+export type UserCarArgs = CarArgs & { isSelected?: boolean }
 
 export class UserCar extends CarBase {
-  private isSelected: boolean;
+  private isSelected: boolean
   constructor(args: UserCarArgs) {
-    super(args);
-    this.isSelected = !!args?.isSelected;
+    super(args)
+    this.isSelected = !!args?.isSelected
   }
 
   // Getter
-  getIsSelected = () => this.isSelected;
+  getIsSelected = () => this.isSelected
   // Setter
-  changeStatus = (isSelected: boolean) => (this.isSelected = isSelected);
+  changeStatus = (isSelected: boolean) => (this.isSelected = isSelected)
 }

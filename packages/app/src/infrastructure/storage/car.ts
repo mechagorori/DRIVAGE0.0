@@ -1,20 +1,24 @@
-import { StandardCar } from "../../const/car";
-import { storage } from "../firebase";
-import { ref, uploadString, FirebaseStorage } from "firebase/storage";
+import {
+  ref,
+  uploadString,
+  FirebaseStorage,
+  getDownloadURL,
+} from "firebase/storage"
 
 export class CarStorage {
-  handler: FirebaseStorage;
-  basePath = "cars";
+  handler: FirebaseStorage
+  basePath = "cars"
   constructor(handler: FirebaseStorage) {
-    this.handler = handler;
+    this.handler = handler
   }
 
   save = async (value: string, fileName: string) => {
-    const storageRef = ref(this.handler, `${this.basePath}/${fileName}`);
+    const storageRef = ref(this.handler, `${this.basePath}/${fileName}`)
     await uploadString(storageRef, value).then((snapshot) => {
-      console.log("Uploaded a raw string!");
-    });
-  };
+      console.log("Uploaded a raw string!")
+    })
+    return await getDownloadURL(storageRef)
+  }
 }
 
 // const test = () => {

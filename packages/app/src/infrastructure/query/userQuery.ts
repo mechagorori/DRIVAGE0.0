@@ -1,50 +1,50 @@
-import { User } from "../../domain/model/user";
-import { Firestore, getDoc, doc, Timestamp } from "firebase/firestore";
+import { User } from "../../domain/model/user"
+import { Firestore, getDoc, doc, Timestamp } from "firebase/firestore"
 
 export interface UserDto {
-  address: string;
-  name: string | null;
-  icon: string | null;
+  address: string
+  name: string | null
+  icon: string | null
   cars: {
-    address: string;
-    meta: string;
-    isSelected: boolean;
-  }[];
+    address: string
+    meta: string
+    isSelected: boolean
+  }[]
   seasons: {
-    id: string;
-    title: string;
-    startDate: Timestamp;
-    endDate: Timestamp;
-    amount: number;
-  }[];
+    id: string
+    title: string
+    startDate: Timestamp
+    endDate: Timestamp
+    amount: number
+  }[]
   anzns: {
-    address: string;
+    address: string
     details: {
-      id: string;
-      title: string;
-      isSuccess: boolean;
-    }[];
-    startDate: Timestamp;
-    endDate: Timestamp;
-  }[];
+      id: string
+      title: string
+      isSuccess: boolean
+    }[]
+    startDate: Timestamp
+    endDate: Timestamp
+  }[]
 }
 
 export class UserQuery {
-  private handler: Firestore;
-  private collection = "users";
+  private handler: Firestore
+  private collection = "users"
   constructor(handler: Firestore) {
-    this.handler = handler;
+    this.handler = handler
   }
 
   find = async (address: string) => {
-    const docSnap = await getDoc(doc(this.handler, this.collection, address));
+    const docSnap = await getDoc(doc(this.handler, this.collection, address))
     if (docSnap.exists()) {
-      const data = docSnap.data() as UserDto;
-      return this.converter(data);
+      const data = docSnap.data() as UserDto
+      return this.converter(data)
     } else {
-      return null;
+      return null
     }
-  };
+  }
 
   converter = (target: UserDto) =>
     new User({
@@ -59,5 +59,5 @@ export class UserQuery {
         startDate: i.startDate.toDate(),
         endDate: i.endDate.toDate(),
       })),
-    });
+    })
 }

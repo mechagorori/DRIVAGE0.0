@@ -4,35 +4,35 @@
 
 */
 export type SeasonArgs = {
-  id: string;
-  title: string;
-  startDate: Date;
-  endDate: Date;
-};
+  id: string
+  title: string
+  startDate: Date
+  endDate: Date
+}
 
 export class SeasonBase {
   // ID
-  protected id: string;
+  protected id: string
   // 合計得点
-  protected title: string;
+  protected title: string
   // 運転開始時刻
-  protected startDate: Date;
+  protected startDate: Date
   // 運転終了時刻
-  protected endDate: Date;
+  protected endDate: Date
   constructor(args: SeasonArgs) {
-    this.id = args.id;
-    this.title = args.title;
-    this.startDate = args.startDate;
-    this.endDate = args.endDate;
+    this.id = args.id
+    this.title = args.title
+    this.startDate = args.startDate
+    this.endDate = args.endDate
   }
 
   //
   // Getter
   //
-  getId = () => this.id;
-  getTitle = () => this.title;
-  getStartDate = () => this.startDate;
-  getEndDate = () => this.endDate;
+  getId = () => this.id
+  getTitle = () => this.title
+  getStartDate = () => this.startDate
+  getEndDate = () => this.endDate
 }
 
 /*
@@ -43,7 +43,7 @@ export class SeasonBase {
 */
 export class Season extends SeasonBase {
   constructor(args: SeasonArgs) {
-    super(args);
+    super(args)
   }
 }
 
@@ -53,20 +53,20 @@ export class Season extends SeasonBase {
 
 
 */
-export type UserSeasonArgs = SeasonArgs & { amount?: number };
+export type UserSeasonArgs = SeasonArgs & { amount?: number }
 
 export class UserSeason extends SeasonBase {
-  private amount: number;
+  private amount: number
   constructor(args: UserSeasonArgs) {
-    super(args);
-    this.amount = args?.amount ?? 0;
+    super(args)
+    this.amount = args?.amount ?? 0
   }
 
   // Getter
-  getAmount = () => this.amount;
+  getAmount = () => this.amount
 
   // Setter
   addAmount = (point: number) => {
-    this.amount = this.amount + point;
-  };
+    this.amount = this.amount + point
+  }
 }

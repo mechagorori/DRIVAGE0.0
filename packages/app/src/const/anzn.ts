@@ -9,4 +9,4 @@ export const AnznDetails = [
     id: "01GGTYEY8RRKY6KXMMQY42J36J",
     title: "強引な車線割込みを行わなかったか",
   },
-];
+]

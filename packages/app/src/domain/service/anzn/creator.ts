@@ -30,6 +30,11 @@ export const anznCreator = async (
   if (!provider) throw new Error()
   const signer = provider.getSigner()
   const contract = ContractFactory.build(new AnznContract(), signer)
+
+  // need to mint first for initialization
+  const anznInitTxn = await contract.mint()
+  await anznInitTxn.wait()
+
   const anznTxn = await contract.addAnzn(amount)
   await anznTxn.wait()
   const address = anznTxn.hash

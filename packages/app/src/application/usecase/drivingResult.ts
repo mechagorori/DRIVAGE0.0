@@ -4,11 +4,13 @@ import { useLoginUseCase } from "application/usecase/login"
 
 export const useDrivingResultUseCase = () => {
   const { account } = useLoginUseCase()
+  const { ethereum } = window as any
+
   const execute = useCallback(
     async (value: Value) => {
-      if (!account) throw new Error()
+      if (!account || !ethereum) throw new Error()
       const address = account.getAddress()
-      await anznCreator(address, value)
+      await anznCreator(address, value, ethereum)
     },
     [account]
   )

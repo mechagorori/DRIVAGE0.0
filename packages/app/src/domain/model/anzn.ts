@@ -26,6 +26,11 @@ export class Anzn {
       .reduce((a, b) => a + b, 0)
   }
 
+  static calcTotalPoint = (value: AnznArgs["details"]) =>
+    value
+      .map((i) => new AnznDetail(i))
+      .map((i) => i.getPoint())
+      .reduce((a, b) => a + b, 0)
   //
   // Getter
   //

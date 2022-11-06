@@ -1,7 +1,5 @@
 import { useCallback } from "react"
 import { atom, selector, useSetRecoilState, useRecoilValue } from "recoil"
-import { login as loginService } from "../../domain/service/user/login"
-import { User } from "../../domain/model/user"
 
 const initialValue: { loading: boolean } = { loading: false }
 

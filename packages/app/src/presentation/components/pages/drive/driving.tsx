@@ -17,7 +17,7 @@ export const Driving = (props: { stop: () => void; startDate: Date }) => {
     return () => {
       timer && clearInterval(timer)
     }
-  }, [props.startDate, timer])
+  }, [props.startDate])
   return (
     <div
       css={css`

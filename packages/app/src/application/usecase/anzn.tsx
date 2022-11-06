@@ -2,11 +2,13 @@ import { useCallback, useEffect, useState } from "react"
 import { anznGetter } from "domain/service/anzn/getter"
 import { useLoginUseCase } from "application/usecase/login"
 import { useToast } from "application/usecase/toast"
+import { useEthereumUseCase } from "./ethereum"
 
 export const useAnznUseCase = () => {
   const [anzn, setAnzn] = useState(0)
   const { account } = useLoginUseCase()
-  const { ethereum } = window as any
+  const { ethereum } = useEthereumUseCase()
+
   const { notInstallMetaMask, invalidArgument, custom } = useToast()
   const execute = useCallback(async () => {
     if (!ethereum) {

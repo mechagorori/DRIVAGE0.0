@@ -2,11 +2,13 @@ import { useCallback, useEffect, useState } from "react"
 import { dcoinGetter } from "domain/service/dcoin/getter"
 import { useLoginUseCase } from "application/usecase/login"
 import { useToast } from "application/usecase/toast"
+import { useEthereumUseCase } from "./ethereum"
 
 export const useDcoinUseCase = () => {
   const [dcoin, setDcoin] = useState(0)
   const { account } = useLoginUseCase()
-  const { ethereum } = window as any
+  const { ethereum } = useEthereumUseCase()
+
   const { notInstallMetaMask, invalidArgument, custom } = useToast()
   const execute = useCallback(async () => {
     if (!ethereum) {

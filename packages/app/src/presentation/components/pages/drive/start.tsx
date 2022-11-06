@@ -9,7 +9,7 @@ import { CarImage } from "presentation/components/parts/image/car"
 import { flex_center, white, px, primary } from "presentation/style"
 import { PATHS } from "presentation/routes"
 
-export const DriveStart = () => {
+export const DriveStart = (props: { start: () => void }) => {
   const navigate = useNavigate()
   const { account } = useLoginUseCase()
   const car = useMemo(
@@ -76,7 +76,7 @@ export const DriveStart = () => {
           margin-top: ${px._36};
         `}
       >
-        <StartDriving />
+        <StartDriving onClick={() => props?.start()} />
         <Cancel
           style={css`
             margin-top: ${px._10};

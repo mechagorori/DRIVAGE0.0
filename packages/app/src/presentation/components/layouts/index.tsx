@@ -1,16 +1,19 @@
 /** @jsxImportSource @emotion/react */
-import { ReactNode, useCallback } from "react"
+import { ReactNode, useCallback, useEffect } from "react"
+import { useNavigate } from "react-router-dom"
 import { css } from "@emotion/react"
 import { useLoginUseCase } from "application/usecase/login"
 import { useLoadingUseCase } from "application/usecase/loading"
 import {
   ConnectAccount,
   ConnectdAccount,
-} from "presentation/components/parts/button/connectAccount"
+} from "presentation/components/parts/button/connectWallet"
 import { Loading } from "presentation/components/parts/loading"
 import { black, justify_content_between, px } from "presentation/style"
+import { PATHS } from "presentation/routes"
 
 export const MainLayout = (props: { children?: ReactNode }) => {
+  const navigate = useNavigate()
   const { account, login } = useLoginUseCase()
   const { loading, onChange } = useLoadingUseCase()
   const _login = useCallback(async () => {
@@ -20,6 +23,10 @@ export const MainLayout = (props: { children?: ReactNode }) => {
     })
     onChange(false)
   }, [login, onChange])
+
+  useEffect(() => {
+    if (!account) navigate(PATHS.top)
+  }, [account])
 
   return (
     <div

@@ -22,23 +22,36 @@ const DriveComponent = React.lazy(() =>
   }))
 )
 
+/*
+
+購入
+
+*/
+const PurchaseComponent = React.lazy(() =>
+  import("presentation/components/pages/purchase").then(({ Purchase }) => ({
+    default: Purchase,
+  }))
+)
+
 export const PATHS = {
   top: "/top",
   drive: "/drive",
+  purchase: "/purchase",
 }
 
-export const Top = [
+export const Component = [
   {
     path: PATHS.top,
     element: <TopComponent />,
   },
-]
-
-export const Drive = [
   {
     path: PATHS.drive,
     element: <DriveComponent />,
   },
+  {
+    path: PATHS.purchase,
+    element: <PurchaseComponent />,
+  },
 ]
 
-export const ROUTES = [...Top, ...Drive]
+export const ROUTES = Component

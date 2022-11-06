@@ -43,7 +43,7 @@ export const Top = () => {
               margin-top: ${px._36};
             `}
           >
-            <BuyCar onClick={() => {}} />
+            <BuyCar onClick={() => navigate(PATHS.purchase)} />
           </div>
         </div>
       ) : (

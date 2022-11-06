@@ -11,7 +11,7 @@ import { SelectCar } from "presentation/components/parts/button/selectCar"
 import { CarImage } from "presentation/components/parts/image/car"
 import { AnznContainer } from "presentation/components/parts/container/anzn"
 import { SeasonContainer } from "presentation/components/parts/container/season"
-import { LankContainer } from "presentation/components/parts/container/lank"
+import { RankContainer } from "presentation/components/parts/container/rank"
 import { DcoinContainer } from "presentation/components/parts/container/dcoin"
 import {
   flex_center,
@@ -112,7 +112,7 @@ export const Top = () => {
                   width: 150px;
                 `}
               >
-                <LankContainer />
+                <RankContainer />
                 <DcoinContainer
                   amount={dcoin}
                   style={css`

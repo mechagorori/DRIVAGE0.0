@@ -109,7 +109,7 @@ export const Top = () => {
             >
               <div
                 css={css`
-                  width: 150px;
+                  width: 125px;
                 `}
               >
                 <RankContainer />

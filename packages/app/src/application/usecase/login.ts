@@ -4,6 +4,7 @@ import { login as loginService } from "domain/service/user/login"
 import { userFinder } from "domain/service/user/finder"
 import { User } from "domain/model/user"
 import { useToast } from "application/usecase/toast"
+import { useEthereumUseCase } from "./ethereum"
 
 const initialValue: { account: User | null } = { account: null }
 
@@ -27,7 +28,7 @@ export const useLoginUseCase = () => {
     },
     [handler, value]
   )
-  const { ethereum } = window as any
+  const { ethereum } = useEthereumUseCase()
 
   const login = useCallback(async () => {
     if (!ethereum) {

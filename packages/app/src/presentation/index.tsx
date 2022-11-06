@@ -7,7 +7,6 @@ import { HashRouter, Route, Navigate, Routes } from "react-router-dom"
 import { ress, base, fonts } from "./style"
 import { ROUTES, PATHS } from "./routes"
 import { Loading } from "./components/parts/loading"
-
 function App() {
   return (
     <>

@@ -3,10 +3,11 @@ import { Value, anznCreator } from "domain/service/anzn/creator"
 import { useLoginUseCase } from "application/usecase/login"
 import { useLoadingUseCase } from "application/usecase/loading"
 import { useToast } from "application/usecase/toast"
+import { useEthereumUseCase } from "./ethereum"
 
 export const useDrivingResultUseCase = () => {
   const { account, refetch } = useLoginUseCase()
-  const { ethereum } = window as any
+  const { ethereum } = useEthereumUseCase()
   const { onChange } = useLoadingUseCase()
   const { notInstallMetaMask, invalidArgument, custom } = useToast()
 

@@ -20,12 +20,12 @@ export const useAnznUseCase = () => {
       throw new Error()
     }
     const address = account.getAddress()
-    const _dcoin = await anznGetter(address, ethereum).catch((e) => {
+    const _anzn = await anznGetter(address, ethereum).catch((e) => {
       custom(e)
       throw e
     })
-    setAnzn(_dcoin)
-    return _dcoin
+    setAnzn(_anzn)
+    return _anzn
   }, [account, ethereum, notInstallMetaMask, invalidArgument, custom])
 
   useEffect(() => {

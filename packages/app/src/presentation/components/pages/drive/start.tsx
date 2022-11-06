@@ -1,6 +1,6 @@
 /** @jsxImportSource @emotion/react */
 import { css } from "@emotion/react"
-import { useMemo } from "react"
+import { useMemo, useState, useCallback, useEffect } from "react"
 import { useNavigate } from "react-router-dom"
 import { useLoginUseCase } from "application/usecase/login"
 import { StartDriving } from "presentation/components/parts/button/startDriving"
@@ -10,12 +10,22 @@ import { flex_center, white, px, primary } from "presentation/style"
 import { PATHS } from "presentation/routes"
 
 export const DriveStart = (props: { start: () => void }) => {
+  const [image, setImage] = useState<string | undefined>(undefined)
   const navigate = useNavigate()
   const { account } = useLoginUseCase()
   const car = useMemo(
-    () => account?.getCars()?.find((i) => !i.getIsSelected()) ?? {},
+    () => account?.getCars()?.find((i) => !!i.getIsSelected()) ?? null,
     [account]
   )
+  const _setImage = useCallback(async () => {
+    const meta = await car?.getJson()
+    setImage((meta?.image as string) ?? undefined)
+  }, [car])
+
+  useEffect(() => {
+    _setImage()
+  }, [car])
+
   return (
     <div
       css={css`
@@ -67,10 +77,7 @@ export const DriveStart = (props: { start: () => void }) => {
           </li>
         </ol>
       </div>
-      <CarImage
-        src="https://firebasestorage.googleapis.com/v0/b/drivage-ac98e.appspot.com/o/cars%2FRectangle.svg?alt=media&token=c766656c-c916-4c27-bd68-761ce367fd0d"
-        alt="car"
-      />
+      <CarImage src={image} alt="car" />
       <div
         css={css`
           margin-top: ${px._36};

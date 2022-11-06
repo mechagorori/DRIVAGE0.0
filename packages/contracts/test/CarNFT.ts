@@ -1,8 +1,8 @@
 import { ethers } from "hardhat";
-import { token } from "../typechain-types/@openzeppelin/contracts";
+// import { token } from "../typechain-types/@openzeppelin/contracts";
 const { expect } = require("chai");
 
-describe("Car NFT Factory", function () {
+xdescribe("Car NFT Factory", function () {
   it("The contract owner should mint an NFT", async function () {
     const [owner] = await ethers.getSigners();
 

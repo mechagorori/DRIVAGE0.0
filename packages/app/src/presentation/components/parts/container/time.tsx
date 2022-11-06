@@ -22,6 +22,7 @@ export const TimeContainer = (props: {
     <p
       css={css`
         color: ${primary};
+        font-family: ニコモジ＋;
         ${style}
       `}
     >

@@ -9,6 +9,7 @@ export const LankContainer = (props: { style?: SerializedStyles }) => (
       color: ${primary};
       ${justify_content_between}
       width: 100%;
+      font-family: ニコモジ＋;
     `}
   >
     <label>Lank</label>

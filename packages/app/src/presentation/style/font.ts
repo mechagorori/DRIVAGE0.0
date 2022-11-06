@@ -4,7 +4,7 @@ import ui from "./ui"
 
 export const fonts = css`
   @import url("https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;500&display=swap");
-
+  @import url("https://fonts.cdnfonts.com/css/silom");
   @font-face {
     font-family: "Roboto";
     font-style: normal;
@@ -19,6 +19,10 @@ export const fonts = css`
     font-weight: 100;
     src: url("/webfonts/Roboto-Thin.ttf");
     font-display: swap;
+  }
+  @font-face {
+    font-family: "ニコモジ＋";
+    src: url(https://dl.dropboxusercontent.com/s/6vuhrdblglylxu5/nicokaku_v12.woff2);
   }
   //
   //@font-face {

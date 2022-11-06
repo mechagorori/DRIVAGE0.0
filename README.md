@@ -2,7 +2,7 @@
 
 ## 概要
 
-![screen-shot](https://user-images.githubusercontent.com/47882266/200173208-2405e86c-ac3e-4105-8b9e-aa3a0032d0ce.gif)
+![screen-shot](https://user-images.githubusercontent.com/47882266/200173722-347d5d99-1e7c-4750-9d29-61041b575229.gif)
 
 ## 詳細
 

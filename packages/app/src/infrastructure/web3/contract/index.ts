@@ -14,3 +14,4 @@ export class ContractFactory {
 export * from "./car"
 export * from "./anzn"
 export * from "./dcoin"
+export * from "./drivageFactory"

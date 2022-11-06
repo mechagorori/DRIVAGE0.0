@@ -4,6 +4,7 @@ import { useMemo, useState, useEffect, useCallback } from "react"
 import { useNavigate } from "react-router-dom"
 import { useLoginUseCase } from "application/usecase/login"
 import { useDcoinUseCase } from "application/usecase/dcoin"
+import { useAnznUseCase } from "application/usecase/anzn"
 import { MainLayout } from "presentation/components/layouts"
 import { BuyCar } from "presentation/components/parts/button/buyCar"
 import { SelectCar } from "presentation/components/parts/button/selectCar"
@@ -31,12 +32,12 @@ export const Top = () => {
     const meta = await cars?.find((i) => !!i.getIsSelected())?.getJson()
     setImage((meta?.image as string) ?? undefined)
   }, [cars])
-  const anzn = useMemo(() => account?.getTotalAnznPoint() ?? 0, [account])
+  const { anzn } = useAnznUseCase()
   const { dcoin } = useDcoinUseCase()
 
   useEffect(() => {
     _setImage()
-  }, [cars])
+  }, [_setImage])
 
   return (
     <MainLayout>

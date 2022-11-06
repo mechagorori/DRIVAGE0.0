@@ -1,10 +1,10 @@
 import { useCallback, useEffect, useState } from "react"
-import { dcoinGetter } from "domain/service/dcoin/getter"
+import { anznGetter } from "domain/service/anzn/getter"
 import { useLoginUseCase } from "application/usecase/login"
 import { useToast } from "application/usecase/toast"
 
-export const useDcoinUseCase = () => {
-  const [dcoin, setDcoin] = useState(0)
+export const useAnznUseCase = () => {
+  const [anzn, setAnzn] = useState(0)
   const { account } = useLoginUseCase()
   const { ethereum } = window as any
   const { notInstallMetaMask, invalidArgument, custom } = useToast()
@@ -18,11 +18,11 @@ export const useDcoinUseCase = () => {
       throw new Error()
     }
     const address = account.getAddress()
-    const _dcoin = await dcoinGetter(address, ethereum).catch((e) => {
+    const _dcoin = await anznGetter(address, ethereum).catch((e) => {
       custom(e)
       throw e
     })
-    setDcoin(_dcoin)
+    setAnzn(_dcoin)
     return _dcoin
   }, [account, ethereum, notInstallMetaMask, invalidArgument, custom])
 
@@ -31,8 +31,8 @@ export const useDcoinUseCase = () => {
   }, [account, execute])
 
   useEffect(() => {
-    console.log(dcoin)
-  }, [dcoin])
+    console.log(anzn)
+  }, [anzn])
 
-  return { dcoin, execute }
+  return { anzn, execute }
 }

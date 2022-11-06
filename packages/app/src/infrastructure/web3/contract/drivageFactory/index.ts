@@ -5,7 +5,7 @@ export class DrivageFactory implements IContract {
   readonly address: string
   readonly abi: any
   constructor() {
-    this.address = "0x7a46480e3e34404a6b8d4c4e8a7c4013584207df"
+    this.address = "0xed1740eDd7BAb6e380A1CE469960F3d4D4cE0482"
     this.abi = drivageFactory.abi
   }
 }

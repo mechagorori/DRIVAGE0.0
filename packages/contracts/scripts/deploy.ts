@@ -8,19 +8,16 @@ async function main() {
 
 //   console.log("CarNFT contract deployed to:", carNFT.address);
 
-  const ANZNScore = await ethers.getContractFactory("ANZNScore");
-  const anznScore = await ANZNScore.deploy();
-
-  await anznScore.deployed();
-
-  console.log("ANZN contract deployed to:", anznScore.address);
-
   const Dcoin = await ethers.getContractFactory("Dcoin");
   const dcoin = await Dcoin.deploy();
-
   await dcoin.deployed();
-
   console.log("Dcoin contract deployed to:", dcoin.address);
+
+  const DrivageFactory = await ethers.getContractFactory("DrivageFactory");
+  const drivageFactory = await DrivageFactory.deploy(dcoin.address);
+  await drivageFactory.deployed();
+  console.log("DrivageFactory contract deployed to:", drivageFactory.address);
+
 }
 
 // We recommend this pattern to be able to use async/await everywhere

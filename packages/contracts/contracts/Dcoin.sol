@@ -12,7 +12,7 @@ contract Dcoin is ERC20, ERC20Burnable, Pausable, Ownable {
         _mint(msg.sender, initialSupply);
     }
 
-    function mint(address to, uint256 amount) public onlyOwner {
+    function mint(address to, uint256 amount) public {
         _mint(to, amount);
     }
 

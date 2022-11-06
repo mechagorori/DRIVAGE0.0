@@ -2,27 +2,36 @@ import { useCallback } from "react"
 import { Value, anznCreator } from "domain/service/anzn/creator"
 import { useLoginUseCase } from "application/usecase/login"
 import { useLoadingUseCase } from "application/usecase/loading"
+import { useToast } from "application/usecase/toast"
 
 export const useDrivingResultUseCase = () => {
   const { account } = useLoginUseCase()
   const { ethereum } = window as any
   const { onChange } = useLoadingUseCase()
+  const { notInstallMetaMask, invalidArgument, custom } = useToast()
 
   const execute = useCallback(
     async (value: Value) => {
       onChange(true)
-      if (!account || !ethereum) {
+      if (!ethereum) {
         onChange(false)
+        notInstallMetaMask()
+        throw new Error()
+      }
+      if (!account) {
+        onChange(false)
+        invalidArgument()
         throw new Error()
       }
       const address = account.getAddress()
       await anznCreator(address, value, ethereum).catch((e) => {
         onChange(false)
+        custom(e)
         throw e
       })
       onChange(false)
     },
-    [account]
+    [account, ethereum, onChange, notInstallMetaMask, invalidArgument, custom]
   )
 
   return {

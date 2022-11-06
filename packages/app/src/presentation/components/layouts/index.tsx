@@ -5,8 +5,8 @@ import { css } from "@emotion/react"
 import { useLoginUseCase } from "application/usecase/login"
 import { useLoadingUseCase } from "application/usecase/loading"
 import {
-  ConnectAccount,
-  ConnectdAccount,
+  ConnectWallet,
+  ConnectdWallet,
 } from "presentation/components/parts/button/connectWallet"
 import { Loading } from "presentation/components/parts/loading"
 import { black, justify_content_between, px } from "presentation/style"
@@ -45,7 +45,7 @@ export const MainLayout = (props: { children?: ReactNode }) => {
       >
         <div></div>
         <div>
-          {!account ? <ConnectAccount onClick={_login} /> : <ConnectdAccount />}
+          {!account ? <ConnectWallet onClick={_login} /> : <ConnectdWallet />}
         </div>
       </header>
       <main

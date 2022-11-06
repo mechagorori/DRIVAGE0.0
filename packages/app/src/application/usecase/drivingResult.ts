@@ -5,7 +5,7 @@ import { useLoadingUseCase } from "application/usecase/loading"
 import { useToast } from "application/usecase/toast"
 
 export const useDrivingResultUseCase = () => {
-  const { account } = useLoginUseCase()
+  const { account, refetch } = useLoginUseCase()
   const { ethereum } = window as any
   const { onChange } = useLoadingUseCase()
   const { notInstallMetaMask, invalidArgument, custom } = useToast()
@@ -29,9 +29,18 @@ export const useDrivingResultUseCase = () => {
         custom(e)
         throw e
       })
+      await refetch()
       onChange(false)
     },
-    [account, ethereum, onChange, notInstallMetaMask, invalidArgument, custom]
+    [
+      account,
+      ethereum,
+      onChange,
+      notInstallMetaMask,
+      invalidArgument,
+      custom,
+      refetch,
+    ]
   )
 
   return {

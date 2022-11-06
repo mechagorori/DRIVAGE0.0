@@ -7,6 +7,7 @@ import {
   ContractFactory,
   Anzn as AnznContract,
   Dcoin as DcoinContract,
+  DrivageFactory as DrivageFactoryContract,
 } from "../../../infrastructure/web3/contract"
 
 export type Value = Omit<AnznArgs, "address">
@@ -27,14 +28,19 @@ export const anznCreator = async (
     throw e
   })
   if (!provider) throw new Error()
+  // const signer = provider.getSigner()
+  // const contract = ContractFactory.build(new AnznContract(), signer)
+  // const anznTxn = await contract.addAnzn(amount)
+  // await anznTxn.wait()
+  // const address = anznTxn.hash
+  // const dcoinContract = ContractFactory.build(new DcoinContract(), signer)
+  // const dcoinTxn = await dcoinContract.mint(await signer.getAddress(), amount)
+  // await dcoinTxn.wait()
   const signer = provider.getSigner()
-  const contract = ContractFactory.build(new AnznContract(), signer)
-  const anznTxn = await contract.addAnzn(amount)
-  await anznTxn.wait()
-  const address = anznTxn.hash
-  const dcoinContract = ContractFactory.build(new DcoinContract(), signer)
-  const dcoinTxn = await dcoinContract.mint(await signer.getAddress(), amount)
-  await dcoinTxn.wait()
+  const contract = ContractFactory.build(new DrivageFactoryContract(), signer)
+  const drivageFactory = await contract.updateBalances(amount)
+  await drivageFactory.wait()
+  const address = drivageFactory.hash
   user.addAnzn(
     new Anzn({
       address,

@@ -57,7 +57,7 @@ class AnznDetail {
   constructor(args: AnznDetailArgs) {
     this.id = args.id
     this.title = args.title
-    this.point = args?.isSuccess ? 1 : 0
+    this.point = !!args?.isSuccess ? 1 : 0
   }
 
   // Getter

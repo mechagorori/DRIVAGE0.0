@@ -38,7 +38,6 @@ export const carCreator = async (userAddress: string, ethereum: any) => {
   // const nftTxn = await contract.safeFreeMint(url);
   await nftTxn.wait()
   const address = nftTxn.hash
-  console.log(address)
   //　車追加
   user.addCar(new Car({ address, meta: url }))
   //  データ保存

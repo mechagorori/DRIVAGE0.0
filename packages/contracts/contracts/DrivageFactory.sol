@@ -42,16 +42,6 @@ contract ANZNScore is ERC721, Ownable {
         _anznWalletCounter.increment();
     }
 
-    // function mintToWithAmount(address to, uint256 amount) public onlyNonAnznHolder(to) {      
-    //     uint256 newWalletId = _anznWalletCounter.current();
-
-    //     _mint(to, newWalletId);
-    //     anznWalletIdOf[to] = newWalletId;
-    //     anznWallet[newWalletId] = amount;
-
-    //     _anznWalletCounter.increment();
-    // }
-
     function addAnzn(uint256 amount) internal {
         if (balanceOf(msg.sender) < 1) {
             createAnznWalletWithZeroAmount();

@@ -14,6 +14,28 @@ export const ConnectAccount = (props: Props) => {
         flex-direction: column;
         width: 80px;
         padding: ${px._10};
+        position: relative;
+        color: #fff;
+        box-shadow: 0 0 7px #fff, 0 0 10px #fff, 0 0 21px #fff, 0 0 42px #0fa,
+          0 0 82px #0fa, 0 0 92px #0fa, 0 0 102px #0fa, 0 0 151px #0fa;
+        @keyframes blink {
+          40% {
+            opacity: 0.85;
+          }
+          42% {
+            opacity: 0.4;
+          }
+          43% {
+            opacity: 0.85;
+          }
+          45% {
+            opacity: 0.4;
+          }
+          46% {
+            opacity: 0.85;
+          }
+        }
+        animation: blink 3s infinite alternate;
         ${style}
       `}
       {...other}

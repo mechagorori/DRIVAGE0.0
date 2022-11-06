@@ -3,6 +3,7 @@ import { css } from "@emotion/react"
 import { useMemo, useState, useEffect, useCallback } from "react"
 import { useNavigate } from "react-router-dom"
 import { useLoginUseCase } from "application/usecase/login"
+import { useDcoinUseCase } from "application/usecase/dcoin"
 import { MainLayout } from "presentation/components/layouts"
 import { BuyCar } from "presentation/components/parts/button/buyCar"
 import { SelectCar } from "presentation/components/parts/button/selectCar"
@@ -31,6 +32,7 @@ export const Top = () => {
     setImage((meta?.image as string) ?? undefined)
   }, [cars])
   const anzn = useMemo(() => account?.getTotalAnznPoint() ?? 0, [account])
+  const { dcoin } = useDcoinUseCase()
 
   useEffect(() => {
     _setImage()
@@ -108,7 +110,7 @@ export const Top = () => {
               >
                 <LankContainer />
                 <DcoinContainer
-                  amount={10000}
+                  amount={dcoin}
                   style={css`
                     margin-top: ${px._10};
                   `}

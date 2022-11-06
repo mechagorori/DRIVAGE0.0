@@ -14,7 +14,8 @@ export const Button = (props: Props) => {
       css={css`
         background-color: ${primary};
         padding: ${px._10};
-        border-radius: ${px._20};
+        border-radius: ${px._32};
+        padding: ${px._20};
         ${style}
       `}
       {...other}

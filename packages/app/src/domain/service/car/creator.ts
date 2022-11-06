@@ -32,7 +32,6 @@ export const carCreator = async (userAddress: string, ethereum: any) => {
   if (!provider) throw new Error()
   const signer = provider.getSigner()
   const contract = ContractFactory.build(new StandardCarContract(), signer)
-  console.log("Signer: ", contract.signer)
   const nftTxn = await contract.safeMint(url, {
     value: ethers.utils.parseEther("0.01"),
   })

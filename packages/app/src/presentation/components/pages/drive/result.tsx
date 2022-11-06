@@ -1,13 +1,14 @@
 /** @jsxImportSource @emotion/react */
+import { useMemo } from "react"
 import { css } from "@emotion/react"
-import { useLoginUseCase } from "application/usecase/login"
-import { CheckResult } from "presentation/components/parts/button/checkResult"
+import { BackToHomePrimary } from "presentation/components/parts/button/backToHome"
 import {
   flex_center,
   px,
   justify_content_between,
   primary,
 } from "presentation/style"
+import { TimeContainer } from "presentation/components/parts/container/time"
 import AnznIcon from "presentation/assets/anzn-icon.svg"
 import DcoinIcon from "presentation/assets/dcoin-icon.svg"
 
@@ -19,8 +20,18 @@ const COMMENTS = [
   { title: "Go back to Driving school", point: 1 },
   { title: "Go back to Driving school", point: 0 },
 ]
-export const Result = (props: { point: number; mint: () => Promise<void> }) => {
-  const { account } = useLoginUseCase()
+export const Result = (props: {
+  point: number
+  mint: () => Promise<void>
+  startDate: Date
+  endDate: Date
+}) => {
+  const ms = useMemo(
+    () =>
+      Date.parse(props?.endDate.toISOString()) -
+      Date.parse(props?.startDate.toISOString()),
+    [props?.startDate, props?.endDate]
+  )
   return (
     <div
       css={css`
@@ -36,33 +47,36 @@ export const Result = (props: { point: number; mint: () => Promise<void> }) => {
           width: 50%;
         `}
       >
+        <div>
+          <div
+            css={css`
+              ${justify_content_between}
+            `}
+          >
+            <img src={AnznIcon} alt="anzn-icon" />
+            <p>{`000${props?.point}`}</p>
+          </div>
+          <div
+            css={css`
+              ${justify_content_between}
+              margin-top: ${px._10};
+            `}
+          >
+            <img src={DcoinIcon} alt="dcoin-icon" />
+            <p>{`000${props?.point}`}</p>
+          </div>
+        </div>
+
         <div
           css={css`
-            ${justify_content_between}
+            margin-top: ${px._36};
           `}
         >
-          <img src={AnznIcon} alt="anzn-icon" />
-          <p>{`000${props?.point}`}</p>
+          <TimeContainer ms={ms} />
         </div>
         <div
           css={css`
-            ${justify_content_between}
-            margin-top: ${px._36};
-          `}
-        >
-          <img src={DcoinIcon} alt="dcoin-icon" />
-          <p>{`000${props?.point}`}</p>
-        </div>
-        <p
-          css={css`
-            margin-top: ${px._36};
-          `}
-        >
-          Time:
-        </p>
-        <div
-          css={css`
-            margin-top: ${px._36};
+            margin-top: ${px._48};
             ${flex_center}
           `}
         >
@@ -74,7 +88,7 @@ export const Result = (props: { point: number; mint: () => Promise<void> }) => {
           margin-top: ${px._36};
         `}
       >
-        <CheckResult onClick={props?.mint} />
+        <BackToHomePrimary onClick={props?.mint} />
       </div>
     </div>
   )

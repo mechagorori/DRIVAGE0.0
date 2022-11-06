@@ -7,7 +7,7 @@ import { DriveStart } from "./start"
 import { Driving } from "./driving"
 import { Rate } from "./rate"
 import { Result } from "./result"
-import { PATHS, ROUTES } from "presentation/routes"
+import { PATHS } from "presentation/routes"
 
 enum MODE {
   START = "start",
@@ -63,11 +63,20 @@ export const Drive = () => {
 
   const component = useMemo(() => {
     if (mode === MODE.START) return <DriveStart start={start} />
-    if (mode === MODE.DRIVING) return <Driving stop={stop} />
+    if (mode === MODE.DRIVING)
+      return <Driving stop={stop} startDate={startDate ?? new Date()} />
     if (mode === MODE.RATE)
       return <Rate details={details} onClick={onClick} result={result} />
-    if (mode === MODE.RESULT) return <Result point={point} mint={mint} />
+    if (mode === MODE.RESULT)
+      return (
+        <Result
+          point={point}
+          mint={mint}
+          startDate={startDate ?? new Date()}
+          endDate={endDate ?? new Date()}
+        />
+      )
     return null
-  }, [start, stop, details, onClick, result, point, mode])
+  }, [startDate, start, endDate, stop, details, onClick, result, point, mode])
   return <MainLayout>{component}</MainLayout>
 }

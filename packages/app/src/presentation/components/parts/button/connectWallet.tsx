@@ -1,7 +1,7 @@
 /** @jsxImportSource @emotion/react */
 import { css } from "@emotion/react"
 import { Button, Props } from "."
-import { flex_center, gray } from "presentation/style"
+import { flex_center, gray, px } from "presentation/style"
 import Connected from "presentation/assets/connected.svg"
 
 export const ConnectAccount = (props: Props) => {
@@ -13,12 +13,13 @@ export const ConnectAccount = (props: Props) => {
         ${flex_center}
         flex-direction: column;
         width: 80px;
+        padding: ${px._10};
         ${style}
       `}
       {...other}
     >
       <p>Connect</p>
-      <p>Account</p>
+      <p>Wallet</p>
     </Button>
   )
 }

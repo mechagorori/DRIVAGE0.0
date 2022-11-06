@@ -1,8 +1,9 @@
 export const StandardCar = {
   address: "",
   meta: {
-    name: "Rectangle",
-    description: "",
+    name: "Drivage E-car",
+    description:
+      "人のココロと街に安心を。\nLevel5 自動運転コンパクトカーのパイオニア",
     image:
       "https://firebasestorage.googleapis.com/v0/b/drivage-ac98e.appspot.com/o/cars%2FRectangle.svg?alt=media&token=c766656c-c916-4c27-bd68-761ce367fd0d",
     attributes: [

@@ -7,7 +7,7 @@ import { useLoadingUseCase } from "application/usecase/loading"
 import {
   ConnectAccount,
   ConnectdAccount,
-} from "presentation/components/parts/button/connectAccount"
+} from "presentation/components/parts/button/connectWallet"
 import { Loading } from "presentation/components/parts/loading"
 import { black, justify_content_between, px } from "presentation/style"
 import { PATHS } from "presentation/routes"

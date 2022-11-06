@@ -1,16 +1,23 @@
 /** @jsxImportSource @emotion/react */
+import { useState, useEffect } from "react"
 import { css } from "@emotion/react"
-import { useMemo } from "react"
-import { useLoginUseCase } from "application/usecase/login"
 import { StopDriving } from "presentation/components/parts/button/stopDriving"
-import { flex_center, white, px, primary } from "presentation/style"
+import { TimeContainer } from "presentation/components/parts/container/time"
+import { flex_center, px, primary } from "presentation/style"
 
-export const Driving = (props: { stop: () => void }) => {
-  const { account } = useLoginUseCase()
-  const car = useMemo(
-    () => account?.getCars()?.find((i) => !i.getIsSelected()) ?? {},
-    [account]
-  )
+export const Driving = (props: { stop: () => void; startDate: Date }) => {
+  const [time, setTime] = useState<number>(0)
+  const [timer, setTimer] = useState<NodeJS.Timer | null>(null)
+  useEffect(() => {
+    setTimer(
+      setInterval(() => {
+        setTime(Date.now() - Date.parse(props.startDate.toISOString()))
+      }, 1000)
+    )
+    return () => {
+      timer && clearInterval(timer)
+    }
+  }, [props.startDate, timer])
   return (
     <div
       css={css`
@@ -20,9 +27,7 @@ export const Driving = (props: { stop: () => void }) => {
         ${flex_center}
       `}
     >
-      <div css={css``}>
-        <StopDriving onClick={props?.stop} />
-      </div>
+      <StopDriving onClick={props?.stop} />
       <div
         css={css`
           width: 200px;
@@ -30,7 +35,7 @@ export const Driving = (props: { stop: () => void }) => {
           margin-top: ${px._36};
         `}
       >
-        <p>Time: </p>
+        <TimeContainer ms={time} />
       </div>
     </div>
   )

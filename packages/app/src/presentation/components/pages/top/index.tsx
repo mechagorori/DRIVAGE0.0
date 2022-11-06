@@ -129,12 +129,7 @@ export const Top = () => {
               ${flex_center}
             `}
           >
-            <SelectCar
-              onClick={() => {
-                console.log("INTO")
-                navigate(PATHS.drive)
-              }}
-            />
+            <SelectCar onClick={() => navigate(PATHS.drive)} />
           </div>
         </div>
       )}

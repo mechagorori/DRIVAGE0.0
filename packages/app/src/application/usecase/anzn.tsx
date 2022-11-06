@@ -30,9 +30,5 @@ export const useAnznUseCase = () => {
     account && execute()
   }, [account, execute])
 
-  useEffect(() => {
-    console.log(anzn)
-  }, [anzn])
-
   return { anzn, execute }
 }

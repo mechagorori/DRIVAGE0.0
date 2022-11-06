@@ -30,9 +30,5 @@ export const useDcoinUseCase = () => {
     account && execute()
   }, [account, execute])
 
-  useEffect(() => {
-    console.log(dcoin)
-  }, [dcoin])
-
   return { dcoin, execute }
 }

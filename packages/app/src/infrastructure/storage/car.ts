@@ -14,9 +14,7 @@ export class CarStorage {
 
   save = async (value: string, fileName: string) => {
     const storageRef = ref(this.handler, `${this.basePath}/${fileName}`)
-    await uploadString(storageRef, value).then((snapshot) => {
-      console.log("Uploaded a raw string!")
-    })
+    await uploadString(storageRef, value)
     return await getDownloadURL(storageRef)
   }
 }

@@ -50,7 +50,6 @@ export const Rate = (props: {
               checked={d.isSuccess}
               onClick={() => props.onClick(d.id)}
             />
-            <>{console.log(d.isSuccess)}</>
             <p
               css={css`
                 margin-left: ${px._10};

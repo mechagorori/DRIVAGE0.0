@@ -35,8 +35,6 @@ export const anznCreator = async (
   const dcoinContract = ContractFactory.build(new DcoinContract(), signer)
   const dcoinTxn = await dcoinContract.mint(await signer.getAddress(), amount)
   await dcoinTxn.wait()
-  console.log(dcoinTxn.hash)
-  // const address = ulid()
   user.addAnzn(
     new Anzn({
       address,

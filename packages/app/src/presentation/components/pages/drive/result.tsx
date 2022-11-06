@@ -47,7 +47,11 @@ export const Result = (props: {
           width: 50%;
         `}
       >
-        <div>
+        <div
+          css={css`
+            font-family: ニコモジ＋;
+          `}
+        >
           <div
             css={css`
               ${justify_content_between}
@@ -66,7 +70,6 @@ export const Result = (props: {
             <p>{`000${props?.point}`}</p>
           </div>
         </div>
-
         <div
           css={css`
             margin-top: ${px._36};
@@ -77,6 +80,7 @@ export const Result = (props: {
         <div
           css={css`
             margin-top: ${px._48};
+            font-family: ニコモジ＋;
             ${flex_center}
           `}
         >

@@ -45,6 +45,7 @@ export const Purchase = () => {
             css={css`
               color: ${primary};
               font-size: ${text.xl};
+              font-family: ニコモジ＋;
             `}
           >
             {StandardCar.meta.name}
@@ -65,6 +66,7 @@ export const Purchase = () => {
                 color: ${primary};
                 font-size: ${text.xl2};
                 margin-top: ${px._20};
+                font-family: ニコモジ＋;
               `}
             >
               {StandardCar.meta.attributes.find((i) => i.trait_type === "price")

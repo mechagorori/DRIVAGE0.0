@@ -12,6 +12,7 @@ export const DcoinContainer = (props: {
       color: ${primary};
       ${justify_content_between}
       width: 100%;
+      font-family: ニコモジ＋;
     `}
   >
     <label>{props?.amount}</label>

@@ -13,7 +13,8 @@ export const AnznContainer = (props: {
         position: relative;
         width: 68px;
         height: 68px;
-        ${props?.style}
+        font-family: ニコモジ＋;
+        ${props?.style};
       `}
     >
       <img src={AnznFrame} alt="anzn-icon" />

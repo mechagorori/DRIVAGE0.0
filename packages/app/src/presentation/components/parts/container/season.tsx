@@ -13,6 +13,7 @@ export const SeasonContainer = (props: {
         position: relative;
         width: 68px;
         height: 68px;
+        font-family: ニコモジ＋;
         ${props?.style}
       `}
     >
